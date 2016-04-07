@@ -6,7 +6,7 @@ package gis
   * TODO: usage information
   * TODO: help message
   */
-object Program {
+object App {
   def main(args: Array[String]) = {
     println("Hello world")
   }
