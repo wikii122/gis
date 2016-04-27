@@ -13,6 +13,19 @@ class testGraph extends UnitTest{
     graph.edges shouldBe empty
   }
 
+  it should "allow to be constructed from given set of data" in {
+    val graph = Graph(
+      "1" :: "2" :: "3" :: Nil,
+      ("1", "2", 1) ::
+        ("3", "2", 2) ::
+        ("2", "3", 4) ::
+        ("1", "3", 5) :: Nil
+    )
+
+    graph.vertices.length shouldEqual 3
+    graph.edges.length shouldEqual 4
+  }
+
   it should "add new vertex to itself" in {
     val name = "test"
     val emptyGraph = Graph[String]

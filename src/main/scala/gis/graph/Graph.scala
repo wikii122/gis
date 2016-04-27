@@ -10,11 +10,11 @@ package gis.graph
 class Graph[A] private (vertexList: Set[A], edgeList: Set[(A, A, Int)]) {
   protected[this] val graph: Graph[A] = this
 
-  case class Vertex private[Graph](name: A) {
+  case class Vertex private[Graph] (name: A) {
     lazy val edges = graph.edges filter {_ contains name}
   }
 
-  case class Edge private[Graph](vertices: (Vertex, Vertex), cost: Int) {
+  case class Edge private[Graph] (vertices: (Vertex, Vertex), cost: Int) {
     def contains(v: Vertex): Boolean = contains(v.name)
     def contains(n: A): Boolean = n == vertices._1.name || n == vertices._2.name
   }
@@ -44,5 +44,9 @@ class Graph[A] private (vertexList: Set[A], edgeList: Set[(A, A, Int)]) {
 }
 
 object Graph {
-  def apply[A] = new Graph[A](Set.empty, Set.empty)
+  def apply[A]: Graph[A] = new Graph[A](Set.empty, Set.empty)
+  def apply[A](vertexList: Seq[A], edgeList: Seq[(A, A, Int)]): Graph[A] = {
+    val edgeGraph = vertexList.foldLeft(Graph[A]) {_+_}
+    edgeList.foldLeft(edgeGraph) {_+_}
+  }
 }
