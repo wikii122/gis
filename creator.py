@@ -1,7 +1,8 @@
 import random
 import string
 #initial values
-number=28
+number=3
+no_egde = 7
 
 def vgen():
     for x in string.ascii_lowercase:
@@ -11,7 +12,6 @@ def vgen():
     for x in string.ascii_lowercase:
         for y in gen:
             yield x+y
-
 
 
 with open("test","w+") as f:
@@ -26,18 +26,20 @@ with open("test","w+") as f:
     #   for k in int(i/26 - i%1):
     #       nam.append(chr(96+i))
     print(ver_list)
-    how_many=random.random()*number
-    how_many=int(how_many-how_many%1+number)
-    for i in range(1,how_many+1):
-        chosen1=random.random()*len(ver_list)
-        chosen1=int(chosen1-chosen1%1)
-        chosen2=random.random()*(len(ver_list)-1)
-        chosen2=int(chosen2-chosen2%1)
-        if chosen2>=chosen1:
-            chosen2=chosen2+1
-        vlist.append([ver_list[chosen1],ver_list[chosen2],int(1+random.random()*20)])
-    f.write(str(number)+" "+str(len(vlist))+"\n")
-    for ver in ver_list:
+
+    vertices = [ver_list[0]]
+    egdes = []
+    for x in ver_list[1:]:
+        v = random.choice(vertices)
+        vertices.append(x)
+        egdes.append((v, x, random.randrange(100)))
+
+    for x in range(no_egde - len(egdes)):
+        vs = random.sample(vertices, 2)
+        egdes.append((vs[0], vs[1], random.randrange(100)))
+
+    f.write(str(number)+" "+str(len(egdes))+"\n")
+    for ver in vertices:
         f.write(str(ver)+"\n")
-    for edge in vlist:
+    for edge in egdes:
         f.write(' '.join([edge[0], edge[1], str(edge[2])+"\n"]))
