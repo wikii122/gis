@@ -16,15 +16,11 @@ def vgen():
 
 with open("test","w+") as f:
     f.truncate()
-    ver = 0
-    con = 0
-    vlist = []
+
     name = vgen()
+
     ver_list = [next(name) for i in range(number)]
-    #for i in range(1,number+1):
-    #   nam=""
-    #   for k in int(i/26 - i%1):
-    #       nam.append(chr(96+i))
+
     print(ver_list)
 
     vertices = [ver_list[0]]
@@ -39,7 +35,9 @@ with open("test","w+") as f:
         egdes.append((vs[0], vs[1], random.randrange(100)))
 
     f.write(str(number)+" "+str(len(egdes))+"\n")
+
     for ver in vertices:
         f.write(str(ver)+"\n")
+
     for edge in egdes:
         f.write(' '.join([edge[0], edge[1], str(edge[2])+"\n"]))

@@ -17,6 +17,11 @@ class Graph[A] private (vertexList: Set[A], edgeList: Set[(A, A, Int)]) {
   case class Edge private[Graph] (vertices: (Vertex, Vertex), cost: Int) {
     def contains(v: Vertex): Boolean = contains(v.name)
     def contains(n: A): Boolean = n == vertices._1.name || n == vertices._2.name
+
+    def opposite(vertex: Vertex): Vertex = opposite(vertex.name)
+    def opposite(n: A): Vertex = if (n == vertices._1.name) vertices._2
+      else if(n == vertices._2) vertices._1
+      else throw new NoSuchElementException(s"No such vertex in edge $n")
   }
 
   /** List of vertices.*/
