@@ -24,5 +24,7 @@ abstract class Router[A] protected (protected val graph: Graph[A]) {
 }
 
 object Router {
-  def apply[A](graph: Graph[A]): Router[A] = new PathFinder[A](graph)
+  def apply[A](graph: Graph[A]): Router[A] =
+    if (graph.edges.forall(_.cost == graph.edges.head.cost)) ???
+    else new PathFinder[A](graph)
 }
