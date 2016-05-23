@@ -1,6 +1,6 @@
 package gis.graph
 
-import gis.graph.routers.PathFinder
+import gis.graph.routers.{BFS, PathFinder}
 
 abstract class Router[A] protected (protected val graph: Graph[A]) {
   def find(from: A, to: A, jumps: Int): Option[Route] = {
@@ -25,6 +25,6 @@ abstract class Router[A] protected (protected val graph: Graph[A]) {
 
 object Router {
   def apply[A](graph: Graph[A]): Router[A] =
-    if (graph.edges.forall(_.cost == graph.edges.head.cost)) ???
+    if (graph.edges.forall(_.cost == graph.edges.head.cost)) new BFS[A](graph)
     else new PathFinder[A](graph)
 }
