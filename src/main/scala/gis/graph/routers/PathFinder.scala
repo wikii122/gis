@@ -14,11 +14,13 @@ class PathFinder[A](g: Graph[A]) extends Router[A](g) {
           (routes contains otherVertex.name) &&
             (routes(vertex.name).distance + edge.cost >= routes(otherVertex.name).distance)
         })
+
         val addedVertices = analyzedEdges.foldLeft(vertexList) { (vs: List[graph.Vertex], edge) =>
           val otherVertex = edge opposite vertex.name
           if (vs contains otherVertex) vertices
           else otherVertex.asInstanceOf[graph.Vertex] :: vertices
         }
+
         val updatedRoutes = analyzedEdges.foldLeft(routes) { (rs: Map[A, Route], edge) =>
           val otherVertex = edge opposite vertex.name
           if (!rs.contains(otherVertex.name) || rs(vertex.name).distance + edge.cost < rs(otherVertex.name).distance) {
@@ -28,7 +30,8 @@ class PathFinder[A](g: Graph[A]) extends Router[A](g) {
             routes
           }
         }
-        findRoutes(addedVertices, jumps, updatedRoutes)
+
+        findRoutes(addedVertices.sortBy(v => updatedRoutes(v.name).distance), jumps, updatedRoutes)
       } else findRoutes(vertexList, jumps, routes)
   }
 }
