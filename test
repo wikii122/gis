@@ -1,11 +1,16 @@
-3 7
+6 6
 a
 b
 c
-a b 35
-a c 87
-b c 6
-c a 26
-c a 42
-c a 56
-c b 31
+d
+e
+f
+g
+a b 2
+b d 2
+b c 4
+b e 3
+c f 1
+e f 3
+c g 16
+f g 2

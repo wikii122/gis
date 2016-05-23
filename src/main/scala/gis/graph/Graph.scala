@@ -20,8 +20,8 @@ class Graph[A] private (vertexList: Set[A], edgeList: Set[(A, A, Int)]) {
 
     def opposite(vertex: Vertex): Vertex = opposite(vertex.name)
     def opposite(n: A): Vertex = if (n == vertices._1.name) vertices._2
-      else if(n == vertices._2) vertices._1
-      else throw new NoSuchElementException(s"No such vertex in edge $n")
+      else if(n == vertices._2.name) vertices._1
+      else throw new NoSuchElementException(s"No such vertex in ${this.toString}: $n")
   }
 
   /** List of vertices.*/
