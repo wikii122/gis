@@ -1,16 +1,16 @@
-6 6
+5 10
 a
 b
 c
 d
 e
-f
-g
-a b 2
-b d 2
-b c 2
-b e 2
-c f 2
-e f 2
-c g 2
-f g 2
+a b 30
+a c 95
+a d 34
+a e 89
+a e 20
+d b 9
+c b 86
+c b 65
+c a 98
+b e 67

@@ -1,8 +1,8 @@
 import random
 import string
 #initial values
-number=3
-no_egde = 7
+number=5
+no_egde = 10
 
 def vgen():
     for x in string.ascii_lowercase:
