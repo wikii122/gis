@@ -15,7 +15,10 @@ abstract class Router[A] protected (protected val graph: Graph[A]) {
 
   class Route(val vertices: List[graph.Vertex], val distance: Int) {
     override def toString() = s"Route($vertices, $distance)"
+    def pretty = s"Distance: $distance\n" +
+      vertices.reverse.foldLeft("") {(str, v) => str + s"${v.name}\n"}
   }
+
   object Start extends Route(Nil, 0)
 
   protected[this] def findRoutes(vertices: List[graph.Vertex],

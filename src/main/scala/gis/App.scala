@@ -19,9 +19,15 @@ object App {
       }
 
       val router = Router(graph)
-      println(router.find(conf.get.from, conf.get.to, conf.get.jumps))
+      val path = router.find(conf.get.from, conf.get.to, conf.get.jumps)
+      path match {
+        case Some(route) =>
+          print(route.pretty)
+          println(conf.get.to)
+        case None => println("Path could not be found")
+      }
     }
-    else ???
+    else println("Program arguments not understood")
   }
 
   case class Conf(file: String, from: String, to: String, jumps: Int)

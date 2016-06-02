@@ -4,6 +4,7 @@ b
 c
 d
 e
+<<<<<<< HEAD
 a b 57
 a c 63
 a d 13
@@ -14,3 +15,19 @@ e c 83
 a c 6
 b a 53
 d a 63
+=======
+t
+tt
+a b 30
+a c 95
+a d 34
+a e 89
+a e 20
+d b 9
+c b 86
+c b 65
+c a 98
+b e 67
+e t 9
+t tt 11
+>>>>>>> f082cc686e01845395149a2a6d5a1a310921b9c8
