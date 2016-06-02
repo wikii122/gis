@@ -4,6 +4,8 @@ b
 c
 d
 e
+t
+tt
 a b 30
 a c 95
 a d 34
@@ -14,3 +16,5 @@ c b 86
 c b 65
 c a 98
 b e 67
+e t 9
+t tt 11
