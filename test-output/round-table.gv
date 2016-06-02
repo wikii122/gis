@@ -1,0 +1,17 @@
+// Graf stworzony na potrzeby GIS
+digraph {
+	b
+	c
+	d
+	e
+		a -> b [label=57 arrowhead=none]
+		a -> c [label=63 arrowhead=none]
+		a -> d [label=13 arrowhead=none]
+		a -> e [label=32 arrowhead=none]
+		a -> b [label=23 arrowhead=none]
+		e -> b [label=93 arrowhead=none]
+		e -> c [label=83 arrowhead=none]
+		a -> c [label=6 arrowhead=none]
+		b -> a [label=53 arrowhead=none]
+		d -> a [label=63 arrowhead=none]
+}
