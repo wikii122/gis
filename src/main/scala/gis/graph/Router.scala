@@ -7,6 +7,7 @@ abstract class Router[A] protected (protected val graph: Graph[A]) {
     val starting = graph.vertices collectFirst {
       case vertex: graph.Vertex if vertex.name == from => vertex
     }
+    if (starting.isEmpty) return None
     val routes = findRoutes(List(starting.get), jumps, Map[A, Route](starting.get.name -> Start))
 
     if (routes.contains(to)) Some(routes(to))

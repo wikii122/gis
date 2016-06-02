@@ -2,16 +2,18 @@ import random
 import string
 from graphviz import Digraph
 #initial values
-number=5
-no_egde = 10
+# Liczba wierzchołków
+number=4#random.randrange()
+# Liczba krawędzi
+no_egde = 5
 
 def vgen():
     for x in string.ascii_lowercase:
         yield x
 
     gen = vgen()
-    for x in string.ascii_lowercase:
-        for y in gen:
+    for x in gen:
+        for y in string.ascii_lowercase:
             yield x+y
 
 
@@ -31,11 +33,11 @@ with open("test","w+") as f:
         dot.node(x)
         v = random.choice(vertices)
         vertices.append(x)
-        egdes.append((v, x, random.randrange(100)))
+        egdes.append((v, x, random.randrange(100)+1))
 
     for x in range(no_egde - len(egdes)):
         vs = random.sample(vertices, 2)
-        egdes.append((vs[0], vs[1], random.randrange(1,100)))
+        egdes.append((vs[0], vs[1], random.randrange(100)+1))
 
     f.write(str(number)+" "+str(len(egdes))+"\n")
 
@@ -45,4 +47,6 @@ with open("test","w+") as f:
     for edge in egdes:
         f.write(' '.join([edge[0], edge[1], str(edge[2])+"\n"]))
         dot.edge(edge[0], edge[1], label = str(edge[2]), arrowhead = "none")
-    dot.render('test-output/round-table.gv', view=True)
+    f.close()
+    print("DONE!")
+    dot.render('test.gv', view=True)
