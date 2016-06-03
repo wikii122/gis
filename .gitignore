@@ -122,3 +122,5 @@ $RECYCLE.BIN/
 hs_err_pid*
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/inspectionProfiles/Project_Default.xml
+src/main/java/META-INF/MANIFEST.MF
+.idea/artifacts/gis_jar.xml

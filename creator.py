@@ -1,8 +1,8 @@
 import random
 import string
 #initial values
-number=5
-no_egde = 10
+number=3
+no_egde = 4
 
 def vgen():
     for x in string.ascii_lowercase:
@@ -32,12 +32,23 @@ with open("test","w+") as f:
 
     for x in range(no_egde - len(egdes)):
         vs = random.sample(vertices, 2)
+        vs = sorted(vs)
         egdes.append((vs[0], vs[1], random.randrange(100)))
 
-    f.write(str(number)+" "+str(len(egdes))+"\n")
+    egdes = sorted(egdes)
+    prev = None
+    all_edges = []
+    for edge in egdes:
+        *name, cost = edge
+        if name != prev:
+            all_edges.append(edge)
+            prev = name
+
+
+    f.write(str(number)+" "+str(len(all_edges))+"\n")
 
     for ver in vertices:
         f.write(str(ver)+"\n")
 
-    for edge in egdes:
+    for edge in all_edges:
         f.write(' '.join([edge[0], edge[1], str(edge[2])+"\n"]))
