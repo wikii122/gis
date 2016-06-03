@@ -7,9 +7,9 @@ import gis.graph.routers.{BFS, PathFinder}
  */
 abstract class Router[A] protected (protected val graph: Graph[A]) {
 
-  /**
-   * Method responsible for preparing data and executing algorithm.
-   */
+/**
+ * Method responsible for preparing data and executing algorithm.
+ */
   def find(from: A, to: A, jumps: Int): Option[Route] = {
     val starting = graph.vertices collectFirst {
       case vertex: graph.Vertex if vertex.name == from => vertex
@@ -21,9 +21,9 @@ abstract class Router[A] protected (protected val graph: Graph[A]) {
     else None
   }
 
-  /**
-   * Container for route leading to destined vertex
-   */
+/**
+ * Container for route leading to destined vertex
+ */
   class Route(val vertices: List[graph.Vertex], val distance: Int) {
     override def toString() = s"Route($vertices, $distance)"
     def pretty = s"Distance: $distance\n" +

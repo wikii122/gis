@@ -2,15 +2,16 @@
 \contentsline {section}{\numberline {1}Realizowane zadanie}{3}
 \contentsline {section}{\numberline {2}Interfejs programu}{3}
 \contentsline {section}{\numberline {3}Za\IeC {\l }o\IeC {\.z}enia programu}{3}
-\contentsline {section}{\numberline {4}Wej\IeC {\'s}cie}{3}
+\contentsline {section}{\numberline {4}Wej\IeC {\'s}cie}{4}
 \contentsline {section}{\numberline {5}Wyj\IeC {\'s}cie}{4}
 \contentsline {section}{\numberline {6}Technologie}{4}
 \contentsline {subsection}{\numberline {6.1}Projekt}{4}
 \contentsline {subsection}{\numberline {6.2}Testy}{4}
 \contentsline {section}{\numberline {7}Struktury danych}{4}
-\contentsline {section}{\numberline {8}Wykorzystane algorytmy}{4}
+\contentsline {section}{\numberline {8}Wykorzystane algorytmy}{5}
 \contentsline {subsection}{\numberline {8.1}Algorytm przedstawiony w pseudokodzie}{5}
 \contentsline {section}{\numberline {9}Testy}{5}
 \contentsline {subsection}{\numberline {9.1}Przypadki szczeg\IeC {\'o}lne}{5}
 \contentsline {subsection}{\numberline {9.2}Grafy tworzone losowo}{5}
-\contentsline {section}{\numberline {10}Wyniki}{5}
+\contentsline {section}{\numberline {10}Wyniki}{9}
+\contentsline {section}{\numberline {11}Wnioski}{10}

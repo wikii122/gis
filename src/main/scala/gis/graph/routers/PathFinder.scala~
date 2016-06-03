@@ -4,9 +4,7 @@ package routers
 import scala.annotation.tailrec
 
 /**
- * Class responsible for pathfinding in graph using modified Dijkstra algorithm 
- * Provided graph should respect following rules:
- * -All edges must connect different vertices 
+ * Class responsible for pathfinding in graph using modified Dijkstra algorithm  
  */
 class PathFinder[A](g: Graph[A]) extends Router[A](g) {
   @tailrec

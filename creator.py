@@ -3,17 +3,17 @@ import string
 from graphviz import Digraph
 #initial values
 # Liczba wierzcholkow
-number=4#random.randrange()
+number=12000#random.randrange()
 # Liczba krawedzi
-no_egde = 5
+no_egde = 50000
 
 def vgen():
     for x in string.ascii_lowercase:
         yield x
 
     gen = vgen()
-    for x in string.ascii_lowercase:
-        for y in gen:
+    for x in gen:
+        for y in string.ascii_lowercase:
             yield x+y
 
 

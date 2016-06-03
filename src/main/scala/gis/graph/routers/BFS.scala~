@@ -6,9 +6,7 @@ import scala.annotation.tailrec
 /**
  * Class responsible for pathfinding in graph using BFS algorithm  
  * Provided graph should respect following rules:
- * -All edges must connect different vertices
- * -Cost of all edges are equal
- * -No more than 1 edge connects two different vertices
+ * Cost of all edges are equal
  */
 class BFS[A](g: Graph[A]) extends Router[A](g) {
   @tailrec

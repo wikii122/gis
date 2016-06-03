@@ -55,13 +55,14 @@
 	Założenia dotyczą danych wejściowych. Są one następujące:
 	\begin{itemize}
 		\item Wierzchołek początkowy i końcowy muszą należeć do grafu
-		\item Wierzchołek początkowy i końcowy są różne
+		\item Wierzchołek początkowy i końcowy każdej krawędzi są różne
 		\item Minimalna liczba skoków jest całkowita dodatnia
 		\item Podawany graf powinien być spójny i niekierowany
-		\item Każda krawędź powinna mieć  wagę
+		\item Każda krawędź powinna mieć wagę
 		\item Każdy wierzchołek powinien mieć unikalną nazwę
 		\item Krawędź łączy zdefiniowane uprzednio wierzchołki
 		\item Wagi krawędzi muszą mieć wartości dodatnie całkowite
+		\item Dla metody BFS między dwoma dowolnymi wierzchołkami nie powinno być więcej niż jednej krawędzi
 		\item Pliki wejściowe są stworzone zgodnie z podaną specyfikacją
 	\end{itemize}
 	
@@ -161,6 +162,7 @@
 \end{figure}
 	
 \section{Wyniki}
+Testy przeprowadzano na komputerze z procesorem AMD Phenom(tm) II X6 1090T. Około 0.4 sekundy z podanych czasów jest pochłaniane na uruchamianie wirtualnej maszyny Java.\\
 Dla podanych przykładów wyniki działania programu, poszukującego ścieżki - dla ograniczenia do odległości 5 krawędzi - były następujące:
 \begin{itemize}
 
@@ -173,6 +175,7 @@ c
 d
 e
 \end{verbatim}
+Czas wykonania: 0m0.637s
 \item \ref{kolo} b \begin{verbatim}
 Distance: 12
 a
@@ -180,6 +183,7 @@ c
 d
 e
 \end{verbatim}
+Czas wykonania: 0m0.616s
 \item \ref{prostaBFS} c \begin{verbatim}
 Distance: 5
 a
@@ -189,29 +193,34 @@ d
 e
 f
 \end{verbatim}
+Czas wykonania: 0m0.659s
 \item \ref{BFS} a \begin{verbatim}
 Distance: 2
 c
 a
 b
 \end{verbatim}
+Czas wykonania: 0m0.544s
 \item \ref{4_5} b \begin{verbatim}
 Distance: 86
 a
 c
 \end{verbatim}
+Czas wykonania: 0m0.662s
 \item \ref{5_10} c \begin{verbatim}
 Distance: 49
 a
 b
 c
 \end{verbatim}
+Czas wykonania: 0m0.597s
 \item \ref{7_20} a \begin{verbatim}
 Distance: 56
 a
 d
 g
 \end{verbatim}
+Czas wykonania: 0m0.652s
 \item \ref{14_50} b \begin{verbatim}
 Distance: 50
 a
@@ -219,7 +228,7 @@ k
 g
 h
 \end{verbatim}
-
+Czas wykonania: 0m0.701s
   \end{multicols}
 \end{itemize}
 Dla największego testowanego grafu (12000 wierzchołków i 50000 krawędzi)
@@ -232,6 +241,63 @@ coh
 bun
 abs
 \end{verbatim}
+Czas wykonania: 1m47.688s\\
+
+Dla innego wygenerowanego grafu zawierającego tyle samo krawędzi i wierzchołków, jednak rozpatrywanego algorytmem BFS (tworzone wagi krawędzi są równe 1) wynik jest następujący:
+\begin{multicols}{2}
+\begin{verbatim}
+Distance: 41
+ax
+hyr
+pxm
+b
+ihe
+bum
+ojk
+dfz
+puh
+dwj
+csn
+mef
+acz
+jbv
+pkb
+itu
+dqe
+gsq
+fft
+erk
+gdo
+ivw
+cqz
+qfv
+cey
+dmo
+apc
+pyh
+mg
+ckz
+nfq
+jbg
+jpf
+frk
+rx
+avh
+axr
+cna
+dxw
+jko
+uw
+abs
+\end{verbatim}
+\end{multicols}
+Czas wykonania: 0m2.744s
+\section{Wnioski}
+Oryginalny algorytm Dijkstry, zmodyfikowany o skracanie poszukiwań do maksymalnej odległości (wyrażonej w skokach) sprawdza się bardzo dobrze dla ilości wierzchołków poniżej rzędu wielkości $2 \cdot 10^4$ i ilości krawędzi poniżej $10^5$.
+Dla wartości liczby wierzchołków zbliżających się do tej granicy czas oczekiwania na wynik działania programu trwa ponad 3 minuty (przy pełnym użyciu procesora Intel Core i5 o taktowaniu 2.4 GHz).\\
+Złożoność czasowa algorytmu Dijkstry wynosi $E \cdot V$.\\
+Porównanie działania algorytmów BFS i zmodyfikowanego algorytmu Dijkstry wyraźnie pokazują, że dla dużych grafów algorytm BFS działa nieporównywalnie sprawniej.
+
 \end{document}
 
 
