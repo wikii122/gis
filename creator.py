@@ -1,8 +1,11 @@
 import random
 import string
+from graphviz import Digraph
 #initial values
-number=3
-no_egde = 4
+# Liczba wierzcholkow
+number=4#random.randrange()
+# Liczba krawedzi
+no_egde = 5
 
 def vgen():
     for x in string.ascii_lowercase:
@@ -16,6 +19,7 @@ def vgen():
 
 with open("test","w+") as f:
     f.truncate()
+    dot = Digraph(comment='Graf stworzony na potrzeby GIS')
 
     name = vgen()
 
@@ -26,20 +30,22 @@ with open("test","w+") as f:
     vertices = [ver_list[0]]
     egdes = []
     for x in ver_list[1:]:
+        dot.node(x)
         v = random.choice(vertices)
         vertices.append(x)
-        egdes.append((v, x, random.randrange(100)))
+        egdes.append((v, x, 1))#random.randrange(100)))
 
     for x in range(no_egde - len(egdes)):
         vs = random.sample(vertices, 2)
         vs = sorted(vs)
-        egdes.append((vs[0], vs[1], random.randrange(100)))
+        egdes.append((vs[0], vs[1], 1))#random.randrange(100)))
 
     egdes = sorted(egdes)
     prev = None
     all_edges = []
     for edge in egdes:
-        *name, cost = edge
+        name1, name2, cost = edge
+        name = [name1, name2]
         if name != prev:
             all_edges.append(edge)
             prev = name
@@ -52,3 +58,7 @@ with open("test","w+") as f:
 
     for edge in all_edges:
         f.write(' '.join([edge[0], edge[1], str(edge[2])+"\n"]))
+        dot.edge(edge[0], edge[1], label = str(edge[2]), arrowhead = "none")
+    f.close()
+    print("DONE!")
+    dot.render('test.gv', view=True)

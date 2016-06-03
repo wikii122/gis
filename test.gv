@@ -1,0 +1,10 @@
+// Graf stworzony na potrzeby GIS
+digraph {
+	b
+	c
+	d
+		a -> b [label=1 arrowhead=none]
+		a -> c [label=1 arrowhead=none]
+		a -> d [label=1 arrowhead=none]
+		c -> d [label=1 arrowhead=none]
+}

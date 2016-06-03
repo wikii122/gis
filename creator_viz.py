@@ -2,9 +2,9 @@ import random
 import string
 from graphviz import Digraph
 #initial values
-# Liczba wierzchołków
+# Liczba wierzcholkow
 number=4#random.randrange()
-# Liczba krawędzi
+# Liczba krawedzi
 no_egde = 5
 
 def vgen():
