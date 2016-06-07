@@ -23,7 +23,6 @@ object App {
       path match {
         case Some(route) =>
           print(route.pretty)
-          println(conf.get.to)
         case None => println("Path could not be found")
       }
     }

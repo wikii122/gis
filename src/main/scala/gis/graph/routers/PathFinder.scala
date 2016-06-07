@@ -9,32 +9,24 @@ import scala.annotation.tailrec
  * -All edges must connect different vertices 
  */
 class PathFinder[A](g: Graph[A]) extends Router[A](g) {
-  @tailrec
-  final override protected[this] def findRoutes(vertices: List[graph.Vertex], jumps: Int,
-                                          routes: Map[A, Route]): Map[A, Route] = vertices match {
-    case Nil => routes
-    case vertex :: vertexList => if (routes(vertex.name).vertices.length < jumps) {
-        val analyzedEdges = vertex.edges filterNot (edge => {
-          val otherVertex = edge opposite vertex.name
-          (routes contains otherVertex.name) &&
-            (routes(vertex.name).distance + edge.cost >= routes(otherVertex.name).distance)
-        })
-
-        val (updatedRoutes, addedVertices) = analyzedEdges.foldLeft((routes, vertexList)) {
-          (ts: (Map[A, Route], List[graph.Vertex]), edge) =>
-            val (rs, vs) = ts
-            val otherVertex = edge opposite vertex.name
-            if (!rs.contains(otherVertex.name) || rs(vertex.name).distance + edge.cost < rs(otherVertex.name).distance) {
-              val route = rs(vertex.name)
-              (routes + (otherVertex.name -> new Route(vertex :: route.vertices, route.distance + edge.cost)),
-                otherVertex.asInstanceOf[graph.Vertex] :: vertices)
-            } else {
-              (rs, vs)
-
-            }
-        }
-
-        findRoutes(addedVertices.sortBy(v => updatedRoutes(v.name).distance), jumps, updatedRoutes)
-      } else findRoutes(vertexList, jumps, routes)
+  final private[this] def dfs(vertex: graph.Vertex, jumps: Int, routes: Map[A, Route]): Map[A, Route] = {
+    if (jumps == 0)
+      return routes
+    val edges = vertex.edges.filterNot(e => routes.contains(e.opposite(vertex.name).name))
+    edges.foldLeft(routes) {(rs, e) =>
+      val other = e.opposite(vertex.name).asInstanceOf[graph.Vertex]
+      val route = routes(vertex.name)
+      val result = dfs(e.opposite(vertex.name).asInstanceOf[graph.Vertex], jumps-1, routes + (other.name ->
+        new Route(other :: route.vertices, route.distance + e.cost)))
+      result.foldLeft (rs) {
+        (rs, route) =>
+          val (key, value) = route
+          if (!routes.contains(key) || value.distance < routes(key).distance) rs.updated(key, value)
+          else rs
+      }
+    }
   }
+
+  final override protected[this] def findRoutes(vertices: List[graph.Vertex], jumps: Int,
+                                          routes: Map[A, Route]): Map[A, Route] = dfs(vertices.head, jumps, routes)
 }
