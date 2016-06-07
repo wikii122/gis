@@ -98,34 +98,18 @@
 	Mapa realizowana będzie poprzez wbudowany typ mapy.
 	
 	\section{Wykorzystane algorytmy}
-	Algorytm wykorzystywany do odnajdywania najlżejszej ścieżki w grafie będzie algorytm bazujący na algorytmie Dijkstry. Jego działanie opiera się na sprawdzaniu wierzchołków o najkrótszej długości drogi (do maksymalnej liczby skoków) do momentu dotarcia do wierzchołka docelowego.
+	Algorytm wykorzystywany do odnajdywania najlżejszej ścieżki w grafie będzie algorytm bazujący na algorytmie DFS. Jego działanie opiera się na sprawdzaniu wierzchołków o najkrótszej długości drogi (do maksymalnej liczby skoków) do momentu dotarcia do wierzchołka docelowego.
 	W przypadku sprawdzania wierzchołków oddalonych o więcej niż maksymalną liczbę skoków, algorytm pomija takie rozwiązanie i wyszukuje kolejnych możliwości poprawy ścieżki.
 	W przypadku, gdy podczas tworzenia grafu wykryte zostanie, że wszystkie krawędzie są takiej samej długości, zastosowany zostanie inny algorytm, przyspieszający rozwiązanie zadania. Algorytmem tym będzie Breadth First Search.
 	\subsection{Algorytm przedstawiony w pseudokodzie}
 	\begin{verbatim}
-	
-	queue.append(start_vertex)
-	dist[start_vertex] = 0
-	jumps[start_vertex] = 0
-	
-	while not queue.empty():
-	    vertex = queue.pop()
-	    for neighbour in vertex.neighbours:
-	        edge = graph.edge[vertes, neighbour]
-	
-	        if jumps[vertex] > maxjumps:
-	             continue
-	             
-	        if neighbour in dist or 
-	          dist[neighbour] > dist[vertex] + edge.size:
-	            queue.push(neighbour)
-	            dist[neighbour] = dist[vertex] + edge.size
-	            jumps[neighbour] = jumps[vertex] + 1
-	            prev[neighbour] = vertex
-	    
-	    queue.sort()
-	    
-	
+DFS(from, to, maxjumps, distance=0):
+  if maxjumps == 0:
+    return routes
+  for each neighbour from.neighbours:
+    DFS(neighbour, to, maxjumps-1, distance+dist(from, neighbour))
+  if from == to && (routes is empty || routes.distance > distance):
+    routes.change(from,distance)  			
 	\end{verbatim}
 	
 	\section{Testy}
@@ -175,7 +159,7 @@ c
 d
 e
 \end{verbatim}
-Czas wykonania: 0m0.637s
+Czas wykonania: 0m0.399s
 \item \ref{kolo} b \begin{verbatim}
 Distance: 12
 a
@@ -183,7 +167,7 @@ c
 d
 e
 \end{verbatim}
-Czas wykonania: 0m0.616s
+Czas wykonania: 0m0.383s
 \item \ref{prostaBFS} c \begin{verbatim}
 Distance: 5
 a
@@ -206,21 +190,21 @@ Distance: 86
 a
 c
 \end{verbatim}
-Czas wykonania: 0m0.662s
+Czas wykonania: 0m0.354s
 \item \ref{5_10} c \begin{verbatim}
 Distance: 49
 a
 b
 c
 \end{verbatim}
-Czas wykonania: 0m0.597s
+Czas wykonania: 0m0.375s
 \item \ref{7_20} a \begin{verbatim}
 Distance: 56
 a
 d
 g
 \end{verbatim}
-Czas wykonania: 0m0.652s
+Czas wykonania: 0m0.433s
 \item \ref{14_50} b \begin{verbatim}
 Distance: 50
 a
@@ -228,7 +212,7 @@ k
 g
 h
 \end{verbatim}
-Czas wykonania: 0m0.701s
+Czas wykonania: 0m0.580s
   \end{multicols}
 \end{itemize}
 Dla największego testowanego grafu (12000 wierzchołków i 50000 krawędzi)
@@ -241,7 +225,10 @@ coh
 bun
 abs
 \end{verbatim}
-Czas wykonania: 1m47.688s\\
+Czas wykonania dla maksymalnej liczby skoków:\\
+6 0m32.022s\\ 
+7 0m43.391s\\
+8 1m22.649s\\
 
 Dla innego wygenerowanego grafu zawierającego tyle samo krawędzi i wierzchołków, jednak rozpatrywanego algorytmem BFS (tworzone wagi krawędzi są równe 1) wynik jest następujący:
 \begin{multicols}{2}
@@ -293,10 +280,9 @@ abs
 \end{multicols}
 Czas wykonania: 0m2.744s
 \section{Wnioski}
-Oryginalny algorytm Dijkstry, zmodyfikowany o skracanie poszukiwań do maksymalnej odległości (wyrażonej w skokach) sprawdza się bardzo dobrze dla ilości wierzchołków poniżej rzędu wielkości $2 \cdot 10^4$ i ilości krawędzi poniżej $10^5$.
+Oryginalny algorytm DFS, zmodyfikowany o skracanie poszukiwań do maksymalnej odległości (wyrażonej w skokach) sprawdza się bardzo dobrze dla ilości wierzchołków poniżej rzędu wielkości $2 \cdot 10^4$ i ilości krawędzi poniżej $10^5$.
 Dla wartości liczby wierzchołków zbliżających się do tej granicy czas oczekiwania na wynik działania programu trwa ponad 3 minuty (przy pełnym użyciu procesora Intel Core i5 o taktowaniu 2.4 GHz).\\
-Złożoność czasowa algorytmu Dijkstry wynosi $E \cdot V$.\\
-Porównanie działania algorytmów BFS i zmodyfikowanego algorytmu Dijkstry wyraźnie pokazują, że dla dużych grafów algorytm BFS działa nieporównywalnie sprawniej.
+Porównanie działania algorytmów BFS i zmodyfikowanego algorytmu DFS wyraźnie pokazują, że dla dużych grafów algorytm BFS działa nieporównywalnie sprawniej.
 
 \end{document}
 

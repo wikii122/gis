@@ -21,7 +21,7 @@ class PathFinder[A](g: Graph[A]) extends Router[A](g) {
       result.foldLeft (rs) {
         (rs, route) =>
           val (key, value) = route
-          if (!routes.contains(key) || value.distance < routes(key).distance) rs.updated(key, value)
+          if (!rs.contains(key) || value.distance < rs(key).distance) rs.updated(key, value)
           else rs
       }
     }

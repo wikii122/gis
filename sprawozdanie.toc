@@ -13,5 +13,5 @@
 \contentsline {section}{\numberline {9}Testy}{5}
 \contentsline {subsection}{\numberline {9.1}Przypadki szczeg\IeC {\'o}lne}{5}
 \contentsline {subsection}{\numberline {9.2}Grafy tworzone losowo}{5}
-\contentsline {section}{\numberline {10}Wyniki}{9}
+\contentsline {section}{\numberline {10}Wyniki}{5}
 \contentsline {section}{\numberline {11}Wnioski}{10}
